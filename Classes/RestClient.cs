@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using System;
 using System.IO;
 using System.Net;
 using System.Security.Cryptography;
@@ -59,6 +58,7 @@ namespace IcepayRestClient.Classes
             response = JsonConvert.DeserializeObject<TResponse>(rawResponse);
 
             //verify response checksum
+            //always require presence of a checksum header
             if (!string.IsNullOrWhiteSpace(webresponse.Headers["Checksum"]))
             {
                 var responseChecksum = webresponse.Headers["Checksum"];
@@ -66,8 +66,22 @@ namespace IcepayRestClient.Classes
                 var responseVerificationChecksum = Sha256(responseSignString);
                 if (!responseChecksum.Equals(responseVerificationChecksum, System.StringComparison.InvariantCultureIgnoreCase))
                 {
-                    response = new TResponse { Message = "Response signature invalid." };
+                    if (string.IsNullOrWhiteSpace(response.Message))
+                    {
+                        response = new TResponse { Message = "Authentication error: the checksum was incorrect. Verify your secret code." };
+                    }
+                    response = new TResponse { Message = response.Message };
                 }
+            }
+            else
+            {
+                //if no checksum header was present in the response, the most likely cause is that the sender ID was invalid
+                //return only the response message and regard the response as failed
+                if (string.IsNullOrWhiteSpace(response.Message))
+                {
+                    response = new TResponse { Message = "Authentication error: no checksum found. Verify your merchant ID." };
+                }
+                response = new TResponse { Message = response.Message };
             }
 
             //close streams

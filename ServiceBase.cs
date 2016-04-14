@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace IcepayRestClient
+﻿namespace IcepayRestClient
 {
     public abstract class ServiceBase
     {
@@ -14,7 +8,7 @@ namespace IcepayRestClient
         public ServiceBase(int merchantID, string merchantSecret)
         {
             this.MerchantID = merchantID;
-            this.MerchantSecret=merchantSecret;
+            this.MerchantSecret = merchantSecret;
         }
     }
 }
