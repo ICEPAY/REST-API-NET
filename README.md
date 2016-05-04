@@ -6,7 +6,9 @@ REST API client for .NET developers
 After registering for an account with ICEPAY, you receive an e-mail with your 5-digit merchant ID and 40-digit secret code.
 To use the REST API client, first create a Payment object with your merchant ID and secret:
 
-`IcepayRestClient.Payment restPayment = new IcepayRestClient.Payment(12345, "AbCdEfGhIjKlMnOpQrStUvWxYz1234567890AbCd");`
+```C#
+IcepayRestClient.Payment restPayment = new IcepayRestClient.Payment(12345, "AbCdEfGhIjKlMnOpQrStUvWxYz1234567890AbCd");
+```
 
 To retrieve a list of payment methods available to your merchant account, call the GetMyPaymentMethods method:
 
