@@ -11,13 +11,15 @@ After registering for an account with ICEPAY, you receive an e-mail with your 5-
 To use the REST API client, first create a Payment object with your merchant ID and secret:
 
 ```C#
-IcepayRestClient.Payment restPayment = new IcepayRestClient.Payment(12345, "AbCdEfGhIjKlMnOpQrStUvWxYz1234567890AbCd");
+IcepayRestClient.Payment restPayment = 
+    new IcepayRestClient.Payment(12345, "AbCdEfGhIjKlMnOpQrStUvWxYz1234567890AbCd");
 ```
 
 To retrieve a list of payment methods available to your merchant account, call the GetMyPaymentMethods method:
 
 ```C#
-IcepayRestClient.Classes.Payment.GetMyPaymentMethodsResponse getMyPaymentMethodsResponse = restPayment.GetMyPaymentMethods();
+IcepayRestClient.Classes.Payment.GetMyPaymentMethodsResponse getMyPaymentMethodsResponse = 
+    restPayment.GetMyPaymentMethods();
 ```
 
 It returns a response with an array of PaymentMethod objects. Each of these contain the payment method code and available issuer codes you'll need to perform a checkout.
@@ -25,7 +27,8 @@ It returns a response with an array of PaymentMethod objects. Each of these cont
 Initiate a payment by calling the Checkout method:
 
 ```C#
-IcepayRestClient.Classes.Payment.CheckoutResponse checkoutResponse = restPayment.Checkout(
+IcepayRestClient.Classes.Payment.CheckoutResponse checkoutResponse = 
+    restPayment.Checkout(
   new IcepayRestClient.Classes.Payment.CheckoutRequest
   {
     Amount = 200, //amount in cents
@@ -68,7 +71,8 @@ This response contains a field Status that identifies the current status of the 
 To refund a completed payment, you can use the Refund object:
 
 ```C#
-IcepayRestClient.Refund restRefund = new IcepayRestClient.Refund(12345, "AbCdEfGhIjKlMnOpQrStUvWxYz1234567890AbCd");
+IcepayRestClient.Refund restRefund = 
+    new IcepayRestClient.Refund(12345, "AbCdEfGhIjKlMnOpQrStUvWxYz1234567890AbCd");
 IcepayRestClient.Classes.Refund.RequestRefundResponse refundResponse = restRefund.Checkout(
   new IcepayRestClient.Classes.Refund.RequestRefundRequest
   {
