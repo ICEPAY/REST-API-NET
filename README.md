@@ -1,5 +1,9 @@
-# REST-API-NET
-REST API client for .NET developers
+# ICEPAY REST API for .NET
+Integrate the ICEPAY Payment service in your project using our handy API client based on REST API (JSON).
+
+##Installation
+
+You can download the source code and either include it directly in your project, or build it and import the DLL.
 
 ##Payment
 
