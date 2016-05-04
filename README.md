@@ -16,7 +16,7 @@ It returns a response with an array of PaymentMethod objects. Each of these cont
 
 Initiate a payment by calling the Checkout method:
 
-````IcepayRestClient.Classes.Payment.CheckoutResponse checkoutResponse = restPayment.Checkout(
+```IcepayRestClient.Classes.Payment.CheckoutResponse checkoutResponse = restPayment.Checkout(
   new IcepayRestClient.Classes.Payment.CheckoutRequest
   {
     Amount = 200, //amount in cents
@@ -29,7 +29,7 @@ Initiate a payment by calling the Checkout method:
     Issuer = "ING", //Issuer code
     Language = "NL" //2 character ISO language code
   }
-);````
+);```
 
 The checkout response contains a field PaymentScreenURL. This contains a URL to a payment confirmation screen, to which the end user must be redirected to complete the payment.
 If the PaymentScreenURL is empty, an error has occurred.
