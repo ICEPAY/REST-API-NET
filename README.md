@@ -54,6 +54,8 @@ IcepayRestClient.Classes.Payment.GetPaymentResponse getPaymentResponse = restPay
 ```
 
 This response contains a field Status that identifies the current status of the payment:
+|Status|Description|
+|---|---|
 |OK|The payment was completed successfully|
 |OPEN|The payment was started and is awaiting completion|
 |ERR|The payment failed due to a decline or due to an error|
